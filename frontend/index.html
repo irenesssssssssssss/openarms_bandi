@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Open Arms · Monitor Bandi</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>Open Arms · Monitor Bandi</h1>
+      <p class="muted"><span id="sourceCount">13</span> fonti · Portali europei, nazionali e fondazioni</p>
+    </div>
+    <div class="actions">
+      <button id="refreshBtn">AGGIORNA ORA</button>
+      <button id="sheetBtn" class="secondary" hidden>SYNC GOOGLE SHEET</button>
+    </div>
+  </header>
+
+  <section class="statusbar">
+    <div><strong>Ultimo controllo fonti:</strong> <span id="lastRefresh">mai</span></div>
+    <div id="sourceStatus" class="source-status"></div>
+  </section>
+
+  <p class="monitor-note">Aggiornamento periodico. PARZIALE indica pagine o schede non lette: passa sullo stato per i dettagli. Una scadenza mancante va verificata.</p>
+  <section class="filters">
+    <input id="search" type="search" placeholder="Cerca titolo, ente, tema, attività…" />
+    <select id="sourceFilter"><option value="">Tutte le fonti</option></select>
+    <select id="programFilter" aria-label="Programma"><option value="">Tutti i programmi</option></select>
+    <select id="categoryFilter"><option value="">Tutte le categorie</option></select>
+    <select id="relevanceFilter">
+      <option value="">Alta + Media + Bassa</option>
+      <option>ALTA</option><option>MEDIA</option><option>BASSA</option>
+    </select>
+    <select id="eligibilityFilter"><option value="">Tutte le ammissibilità</option></select>
+    <input id="territoryFilter" placeholder="Territorio" />
+    <select id="daysFilter">
+      <option value="">Qualsiasi scadenza</option>
+      <option value="7">Entro 7 giorni</option><option value="15">Entro 15 giorni</option>
+      <option value="30">Entro 30 giorni</option><option value="60">Entro 60 giorni</option>
+    </select>
+    <input id="deadlineFrom" type="date" title="Scadenza da" />
+    <input id="deadlineTo" type="date" title="Scadenza a" />
+    <label class="checkbox"><input id="showExpired" type="checkbox" /> Mostra scaduti</label>
+  </section>
+
+  <main class="table-wrap">
+    <table id="grantsTable">
+      <thead><tr id="headerRow"></tr></thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+    <div id="emptyState" class="empty" hidden>Nessun bando corrisponde ai filtri.</div>
+  </main>
+
+  <div id="toast" class="toast" hidden></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
